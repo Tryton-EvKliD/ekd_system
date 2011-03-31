@@ -1,1 +1,95 @@
-/home/trytond-1.8.2/trytond/modules/ekd_system/xml/ekd_system.xml
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        
+        <menuitem name="Dictions" id="menu_diction" sequence="1000"
+            icon="tryton-package"/>
+
+        <record model="res.group" id="group_dictions">
+            <field name="name">System Dictions</field>
+        </record>
+<!-->
+        <record model="res.user" id="res.user_admin">
+            <field name="groups"
+                eval="[('add', ref('group_dictions'))]"/>
+        </record>
+<-->
+        <record model="ir.ui.view" id="view_dictions_form">
+            <field name="model">ir.dictions</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="Diction Line">
+                    <label name="key"/>
+                    <field name="key"/>
+                    <label name="value"/>
+                    <field name="value"/>
+                    <label name="active"/>
+                    <field name="active"/>
+                    <label name="model"/>
+                    <field name="model"/>
+                    <label name="pole"/>
+                    <field name="pole"/>
+                    <label name="domain"/>
+                    <field name="domain"/>
+                </form>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_dictions_tree">
+            <field name="model">ir.dictions</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Dictions">
+                    <field name="key" select="1"/>
+                    <field name="value" select="1"/>
+                    <field name="active" select="1"/>
+                    <field name="model" select="1"/>
+                    <field name="pole" select="1"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.action.act_window" id="act_dictions_tree">
+            <field name="name">System Dictions</field>
+            <field name="res_model">ir.dictions</field>
+            <field name="view_type">form</field>
+        </record>
+        <record model="ir.action.act_window.view"
+            id="view_dictions_tree1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="view_dictions_tree"/>
+            <field name="act_window" ref="act_dictions_tree"/>
+        </record>
+        <record model="ir.action.act_window.view"
+            id="view_dictions_tree2">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="view_dictions_form"/>
+            <field name="act_window" ref="act_dictions_tree"/>
+        </record>
+
+        <menuitem parent="ir.menu_models"
+            action="act_dictions_tree"
+            id="menu_dictions_tree"/>
+
+        <record model="ir.model.access" id="access_dictions">
+            <field name="model" search="[('model', '=', 'ir.dictions')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_dictions_admin">
+            <field name="model" search="[('model', '=', 'ir.dictions')]"/>
+            <field name="group" ref="group_dictions"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+    </data>
+</tryton>

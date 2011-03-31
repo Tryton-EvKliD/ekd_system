@@ -1,1 +1,92 @@
-/home/trytond-1.8.2/trytond/modules/ekd_system/xml/ekd_journal.xml
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="res.group" id="group_journal">
+            <field name="name">System Journal</field>
+        </record>
+        <record model="res.user" id="res.user_admin">
+            <field name="groups"
+                eval="[('add', ref('group_journal')), ('add', ref('group_dictions'))]"/>
+        </record>
+
+        <record model="ir.ui.view" id="view_journal_form">
+            <field name="model">ir.journal</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="Journal Line">
+                    <label name="date_operation"/>
+                    <field name="date_operation"/>
+                    <label name="user"/>
+                    <field name="user"/>
+                    <label name="model_ref"/>
+                    <field name="model_ref"/>
+                    <label name="action"/>
+                    <field name="action"/>
+                    <separator colspan="2" string="Message" id="sep_message"/>
+                    <field colspan="2" name="message" select="1"/>
+                    <separator colspan="2" string="New data" id="sep_new_data"/>
+                    <field colspan="2" name="change_data"/>
+                    <separator colspan="2" string="Old data" id="sep_old_data"/>
+                    <field colspan="2" name="old_data"/>
+                </form>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_journal_tree">
+            <field name="model">ir.journal</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Journal">
+                    <field name="date_operation" select="1"/>
+                    <field name="user" select="1"/>
+                    <field name="model_ref" select="1"/>
+                    <field name="action" select="1"/>
+                    <field name="message" select="1"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+        <record model="ir.action.act_window" id="act_journal_tree">
+            <field name="name">System Journal change data</field>
+            <field name="res_model">ir.journal</field>
+            <field name="view_type">form</field>
+        </record>
+        <record model="ir.action.act_window.view"
+            id="view_journal_tree1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="view_journal_tree"/>
+            <field name="act_window" ref="act_journal_tree"/>
+        </record>
+        <record model="ir.action.act_window.view"
+            id="view_journal_tree2">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="view_journal_form"/>
+            <field name="act_window" ref="act_journal_tree"/>
+        </record>
+
+        <menuitem parent="res.menu_res"
+            action="act_journal_tree"
+            id="menu_journal_tree"/>
+
+        <record model="ir.model.access" id="access_journal">
+            <field name="model" search="[('model', '=', 'ir.journal')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_journal_admin">
+            <field name="model" search="[('model', '=', 'ir.journal')]"/>
+            <field name="group" ref="group_journal"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+    </data>
+</tryton>

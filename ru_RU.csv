@@ -1,0 +1,38 @@
+type,name,res_id,src,value,fuzzy
+field,"ir.dictions,active",0,Active,Действительнный,0
+field,"ir.dictions,domain",0,Domain,Область,0
+field,"ir.dictions,key",0,Key,Ключ,0
+field,"ir.dictions,model",0,Model Name,Наименование шаблона,0
+field,"ir.dictions,pole",0,Pole,Поле,0
+field,"ir.dictions,rec_name",0,Name,Наименование,0
+field,"ir.dictions,sequence",0,Sequence,Последовательность,0
+field,"ir.dictions,shortname",0,Shortname,Кратко,0
+field,"ir.dictions,value",0,Value,Значение,0
+field,"ir.journal,action",0,Action,Действие,0
+field,"ir.journal,change_data",0,New data,Новые данные,0
+field,"ir.journal,date_operation",0,Date and Time,Дата и Время,0
+field,"ir.journal,message",0,Message,,0
+field,"ir.journal,model",0,Model,Шаблон,0
+field,"ir.journal,model_ref",0,Model Ref,Ссылка на модел,0
+field,"ir.journal,old_data",0,Old data,Старые данные,0
+field,"ir.journal,rec_name",0,Name,Наименование,0
+field,"ir.journal,user",0,User,Пользователь,0
+model,"ir.action,name",act_dictions_tree,System Dictions,Системные словари,0
+model,"ir.action,name",act_journal_tree,System Journal change data,Системный журнал (работы пользователей),0
+model,"ir.dictions,name",0,System Diction,Системные словарь,0
+model,"ir.journal,name",0,System Journal,Системный журнал,0
+model,"ir.ui.menu,name",menu_diction,Dictions,Словари,0
+model,"ir.ui.menu,name",menu_dictions_tree,System Dictions,Системные словари,0
+model,"ir.ui.menu,name",menu_journal_tree,System Journal change data,Системный журнал (работы пользователей),0
+model,"res.group,name",group_dictions,System Dictions,Системные словари ,0
+model,"res.group,name",group_journal,System Journal,Системный журнал,0
+selection,"ir.journal,action",0,Create,Создание,0
+selection,"ir.journal,action",0,Delete,Удаление,0
+selection,"ir.journal,action",0,Write,Запись,0
+view,ir.dictions,0,Diction Line,Строка словаря,0
+view,ir.dictions,0,Dictions,Словари,0
+view,ir.journal,0,Journal,Журнал,0
+view,ir.journal,0,Journal Line,Строка журнала,0
+view,ir.journal,0,Message,,0
+view,ir.journal,0,New data,Новые данные,0
+view,ir.journal,0,Old data,Старые данные,0
